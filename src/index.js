@@ -3,6 +3,7 @@ import cors from 'cors';
 
 import getCorrectName from './getCorrectName';
 import getSum from './getSum';
+import getLogin from './getLogin';
 
 const app = express();
 app.use(cors());
@@ -18,6 +19,10 @@ app.get('/task2A', (req, res) => {
 
 app.get('/task2B', (req, res) => {
 	res.send(getCorrectName(req.query));
+})
+
+app.get('/task2C', (req, res) => {
+	res.send(getLogin(req.query));
 })
 
 app.listen(8080, () => {
