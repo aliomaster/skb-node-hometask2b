@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import queryLogger from './queryLogger';
 import log4js from 'log4js';
-import logger from log4js.getLogger('Server');
+const logger = log4js.getLogger('Server');
 
 import sendPcData from './sendPcData';
 import handleVolumes from './handleVolumes';

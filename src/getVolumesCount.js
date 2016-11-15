@@ -1,9 +1,9 @@
 import _ from 'lodash';
 
-function getVolumesCount (data) {
-	if (data && 'hdd' in data && Array.isArray(data.hdd)) {
+function getVolumesCount (pcData) {
+	if (pcData && 'hdd' in pcData && Array.isArray(pcData.hdd)) {
 		return _.reduce(
-			data.hdd,
+			pcData.hdd,
 			(result, e) => {
 				if (result[e.volume]) {
 					result[e.volume] = String(parseInt(result[e.volume]) + parseInt(e.size)) + 'B';

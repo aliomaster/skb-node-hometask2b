@@ -1,6 +1,8 @@
 import _ from 'lodash';
+import log4js from 'log4js';
+const logger = log4js.getLogger('sendPcData');
 
-function sendPcData (req, res, data) {
+function sendPcData (req, res, pcData) {
 	try {
 		const props = _.compact(
 			req.url
@@ -10,16 +12,15 @@ function sendPcData (req, res, data) {
 				.split('/')
 		).join('.');
 		const findedData = props === ''
-			? data
-			: _.get(data, props)
-		
+			? pcData
+			: _.get(pcData, props)
 		if (_.isUndefined(findedData)) {
 			return res.sendStatus(404);
 		} else {
 			return res.send(JSON.stringify(findedData));
 		}
 	} catch (err) {
-		console.log('error');
+		logger.error('Fail', err);
 		res.sendStatus(500);
 	}
 }
