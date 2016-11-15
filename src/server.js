@@ -8,29 +8,36 @@ import sendPcData from './sendPcData';
 import handleVolumes from './handleVolumes';
 
 
-function server(data) {
+export default function server(pcData) {
 	try {
 		const app = express();
 		const router = express.Router();
 
 		router.use(queryLogger);
 		router.get('/volumes', (req, res) => {
-			handleVolumes('req, res, data');
+			handleVolumes(req, res, pcData);
 		});
+
+		// todo: add rechecking for length
+
+		/*router.get('/board/vendor/length', (req, res) => {
+			return res.sendStatus(404);
+		});
+		router.get('/hdd/length', (req, res) => {
+			return res.sendStatus(404);
+		});*/
 		router.get('*', (req, res) => {
-			sendPcData('req, res, data');
+			sendPcData(req, res, pcData);
 		});
 
 		app.use(cors());
 		app.use('/', router);
-		app.listen(8080, () => {
-			console.log('Your app listening on port 8080!');
+		app.listen(8085, () => {
+			logger.info('Your app listening on port 8085!');
 		});
 
-		logger.trace('Started');
+		logger.trace('Start');
 	} catch (err) {
 		logger.error('Fail', err);
 	}
 }
-
-module.exports = server;

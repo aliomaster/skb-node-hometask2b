@@ -9,11 +9,10 @@ const pcDataURL = 'https://gist.githubusercontent.com/isuvorov/ce6b8d87983611482
 logger.trace('Start');
 
 fetch(pcDataURL)
-	.then(
+	.then (
 		res => res.json()
 	)
-	.then(
-		pcData => {
+	.then(pcData => {
 			logger.trace('Got PC data', pcData);
 			server(pcData);
 		}

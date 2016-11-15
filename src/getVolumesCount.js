@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-function getVolumesCount (pcData) {
+export default function getVolumesCount (pcData) {
 	if (pcData && 'hdd' in pcData && Array.isArray(pcData.hdd)) {
 		return _.reduce(
 			pcData.hdd,
@@ -18,5 +18,3 @@ function getVolumesCount (pcData) {
 		return {}
 	}
 }
-
-module.exports = getVolumesCount;

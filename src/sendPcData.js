@@ -2,7 +2,7 @@ import _ from 'lodash';
 import log4js from 'log4js';
 const logger = log4js.getLogger('sendPcData');
 
-function sendPcData (req, res, pcData) {
+export default function sendPcData (req, res, pcData) {
 	try {
 		const props = _.compact(
 			req.url
@@ -11,9 +11,9 @@ function sendPcData (req, res, pcData) {
 				.split('#')[0]
 				.split('/')
 		).join('.');
-		const findedData = props === ''
-			? pcData
-			: _.get(pcData, props)
+
+		logger.warn(props);
+		const findedData = (props === '') ? pcData : _.get(pcData, props);
 		if (_.isUndefined(findedData)) {
 			return res.sendStatus(404);
 		} else {
@@ -24,5 +24,3 @@ function sendPcData (req, res, pcData) {
 		res.sendStatus(500);
 	}
 }
-
-module.exports = sendPcData;

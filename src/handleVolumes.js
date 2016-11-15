@@ -3,9 +3,9 @@ import getVolumesCount from './getVolumesCount';
 import log4js from 'log4js';
 const logger = log4js.getLogger('handleVolumes');
 
-function handleVolumes (req, res, data) {
+export default function handleVolumes (req, res, pcData) {
 	try {
-		const volumes = getVolumesCount(data);
+		const volumes = getVolumesCount(pcData);
 		return res.send(JSON.stringify(volumes));
 	} catch (err) {
 		logger.error('Fail', err);
@@ -19,5 +19,3 @@ function handleVolumes (req, res, data) {
 		}
 	}
 }
-
-module.exports = handleVolumes;
