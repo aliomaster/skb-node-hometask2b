@@ -27,7 +27,8 @@ export default function server(pcData) {
 			return res.sendStatus(404);
 		});*/
 		router.get('*', (req, res) => {
-			sendPcData(req, res, pcData);
+			logger.warn(getRouter());
+			//sendPcData(req, res, pcData);
 		});
 
 		app.use(cors());
