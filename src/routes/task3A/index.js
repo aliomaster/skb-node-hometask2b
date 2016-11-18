@@ -4,7 +4,6 @@ const _ = require('lodash');
 const router = AsyncRouter();
 
 module.exports = function(param){
-
 	router.get("/", async function (req, res) {
 		return await res.json(req.computer);
 	});
